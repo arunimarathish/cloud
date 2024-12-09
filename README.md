@@ -32,7 +32,7 @@ Step 1:Connect to Your Server
 Step 2: Update Your Package Index
 Before installing Docker, it’s a good idea to update the package index:
 
-'''bash
+'''
 sudo apt update
 '''
 Step 3:Install Prerequisites
