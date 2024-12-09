@@ -30,10 +30,9 @@ To install Docker on a remote server using PuTTY, you'll first need to ensure yo
 
 Step 1:Connect to Your Server
 Step 2: Update Your Package Index
-Before installing Docker, it’s a good idea to update the package index:
+[Before installing Docker, it’s a good idea to update the package index:]
 
-[sudo apt update]
-
+(sudo apt update)
 Step 3:Install Prerequisites
 For Ubuntu, install the required packages:
 
