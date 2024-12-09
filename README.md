@@ -24,63 +24,125 @@ A cloud-based registry where users can share and distribute Docker image
 
 How Docker works:-
 Docker works by providing a standard way to run your code. Docker is an operating system for containers. Similar to how a virtual machine virtualizes .containers virtualize the operating system of a server. Docker is installed on each server and provides simple commands you can use to build, start, or stop containers.
+# HOW TO INSTALL DOCKER:- 
 
-# HOW TO INSTALL DOCKER:-
 To install Docker on a remote server using PuTTY, you'll first need to ensure you have access to a Linux server (like Ubuntu, CentOS, etc.) via SSH. Here's a step-by-step guide:
 
 Step 1:Connect to Your Server
-Step 2: Update Your Package Index
-[Before installing Docker, it’s a good idea to update the package index:]
 
-(sudo apt update)
+
+ Step 2: Update Your Package Index
+
+Before installing Docker, it’s a good idea to update the package index:
+
+```bash
+sudo apt update
+```
+
+
 Step 3:Install Prerequisites
+
 For Ubuntu, install the required packages:
 
+```bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
 For CentOS, run:
 
+```bash
 sudo yum install -y yum-utils
+```
+
 Step 4: Add Docker’s Official GPG Key
+
 For Ubuntu:
 
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
 For CentOS:
 
+```bash
 sudo rpm --import https://download.docker.com/linux/centos/gpg
+```
+
 Step 5: Set Up the Stable Repository
 For Ubuntu:
 
+```bash
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```
+
+
 For CentOS:
 
+```bash
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+
 Step 6: Install Docker
+
 For Ubuntu:
 
+```bash
 sudo apt update
+```
+
+```bash
 sudo apt install docker-ce
+```
+
 For CentOS:
 
+```bash
 sudo yum install docker-ce
+```
+
 Step 7: Start Docker
+
 Enable and start the Docker service:
 
+
+```bash
 sudo systemctl start docker
+```
+
+```bash
 sudo systemctl enable docker
-Step 8: Verify the Installation
+```
+
+ Step 8: Verify the Installation
+
 Check if Docker is running:
 
+```bash
 sudo systemctl status docker
+```
+
 You can also run a test container:
 
+```bash
 sudo docker run hello-world
-Step 9: (Optional) Manage Docker as a Non-Root User
-If you want to run Docker commands without sudo, add your user to the
+```
+
+ Step 9: (Optional) Manage Docker as a Non-Root User
+
+If you want to run Docker commands without sudo, add your user to the 
 
 Docker group:
 
+```bash
 sudo usermod -aG docker $USER
+```
+
 After running this command, log out and back in for the changes to take effect.
+
+
+
+You’ve successfully installed Docker using PuTTY! If you have any questions or run into issues, feel free to ask.
+
 
 # container:-
 A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
@@ -90,6 +152,242 @@ A container is a standard unit of software that packages up code and all its dep
 Containers are an abstraction at the app layer that packages code and dependencies together. Multiple containers can run on the same machine and share the OS kernel with other containers, each running as isolated processes in user space. Containers take up less space than VMs (container images are typically tens of MBs in size), can handle more applications and require fewer VMs and Operating systems
 
 Screenshot_2024_0918_124201
+
+# NGINX:-
+
+NGINX is a high-performance web server and reverse proxy server that is widely used for serving web applications, handling HTTP and HTTPS requests, and load balancing traffic. It is known for its speed, efficiency, and ability to handle a large number of concurrent connections with low resource usage.
+
+
+# using EC2 in aws:-
+
+First open aws search EC2 then Launch Instance and there select keypair in putty then download it
+
+after that Launch it and run putty and paste public id on HOST NAME and open that downloaded key pair for putty in SSH then Auth then Credentials and open there
+
+ after that run it and write username as ubuntu as selected os and then type following commands
+
+```bash
+sudo apt update
+```
+
+
+```bash
+sudo apt install apache2
+```
+
+ to install a web server on ip then
+
+```bash
+sudo su
+```
+
+ for convert $ into # for getting admin role then
+
+```bash
+cd /var/www/html/
+```
+
+then
+
+```bash
+ls
+```
+
+ for list of html file in it
+
+ then copy that html file name and write
+
+```bash
+rm index.html
+```
+
+```bash
+rm means remove command
+```
+
+```bash
+vi index.html
+```
+
+ this will open a notepad like and write html code there like (vi is editor) -
+
+ then press ctrl+c then shift+colon then write wq and enter
+
+ now copy your public ip and paste it on browser you will see the texts written by you (by using html above)
+
+ congratulations you got it 👏🏻 🎉 
+
+
+# USING CONTAINER IN VM and adding nginx server by Docker:- 
+
+First open aws search EC2 then Launch Instance and there select keypair in putty then download it
+
+after that edit network setting and click on add security group rule and select TCP,UDP,ALL TRAFFIC AND SELECT EVERYWHERE SOURCE TYPE IN THEM then Launch it and run putty and paste public id on HOST NAME and open that downloaded key pair for putty in SSH 
+
+
+(SSH (Secure Shell) is a way to securely connect to another computer over a network. It's like a safe tunnel that allows you to control a remote computer and transfer files to it, without anyone else being able to listen in or interfere with the connection.)
+
+then Auth then Credentials and open there
+
+after that run it and write username as ubuntu as selected os and then type following commands
+
+```bash
+curl -sL https://github.com/ShubhamTatvamasi/docker-install/raw/master/docker-install.sh | bash
+```
+
+ this will install and run docker in your vm
+
+```bash
+newgrp docker
+```
+
+ this command will help us to use docker
+
+```bash
+docker ps
+```
+
+ this will list docker
+
+```bash
+docker --version
+```
+
+ this will display the version of docker installed
+
+ now installing nginx
+
+```bash
+docker pull nginx
+```
+
+ You can download Nginx from a pre-built Docker image, with a default Nginx configuration, by above command. This downloads all the necessary components for the container.
+
+```bash
+docker run --name docker-nginx -p 80:80 nginx
+```
+
+Nginx installed, you can configure the container so that it’s publicly accessible as a web server.
+
+ run is the command to create a new container
+
+ The --name flag is how you specify the name of the container. If left blank, a generated name like nostalgic_hopper will be assigned.
+
+ -p specifies the port you are exposing in the format of -p local-machine-port:internal-container-port. In this case, you are mapping port :80 in the container to port :80 on the server.
+
+nginx is the name of the image on Docker Hub.
+
+ now this will show this on your public ip
+
+![Screenshot_2024_0923_210801](https://github.com/user-attachments/assets/12ed503f-9c71-4c80-bcb3-468c989c0258)
+
+ In your terminal, enter CTRL+C to stop the container from running.
+
+```bash
+docker ps -a
+```
+
+ verify the container status with this command
+
+```bash
+docker rm docker-nginx
+```
+
+ Remove the existing container
+
+```bash
+docker run --name docker-nginx -p 80:80 -d nginx
+```
+
+ Create a new, detached Nginx container,By attaching the -d flag, you are running this container in the background.
+
+```bash
+docker ps
+```
+ this will obtain info about your container
+
+```bash
+docker stop docker-nginx
+```
+
+ Stop the container
+
+```bash
+docker rm docker-nginx
+```
+
+ remove the container
+
+# Building a Web Page to Serve on Nginx
+
+```bash
+mkdir -p ~/docker-nginx/html
+```
+
+ Create a new directory for your website content within the home directory
+
+```bash
+cd ~/docker-nginx/html
+```
+
+ by this you navigate into this
+
+```bash
+vi index.html
+```
+
+ now press i and write your code in html like 
+
+
+![Screenshot_2024_0923_211405](https://github.com/user-attachments/assets/7cd1afd2-b42e-43c1-94ed-86a1f1ebedf9)
+
+ then press ctrl+c then shift+colon then write wq and enter
+
+```bash
+docker run --name docker-nginx -p 80:80 -d -v ~/docker-nginx/html:/usr/share/nginx/html nginx
+```
+
+Linking the Container to the Local Filesystem
+
+ open your public ip in browser you will see as the content as your html code
+
+ here you go 👏🏻
+
+ Using Your Own Nginx Configuration File
+
+```bash
+cd ~/docker-nginx
+```
+
+
+```bash
+docker cp docker-nginx:/etc/nginx/conf.d/default.conf default.conf
+```
+
+ Copy the Nginx config directory into your project folder
+
+```bash
+docker stop docker-nginx
+```
+
+```bash
+docker rm docker-nginx
+```
+
+ to rebuild the container stop the container then remove it
+
+```bash
+docker run --name docker-nginx -p 80:80 -v ~/docker-nginx/html:/usr/share/nginx/html -v ~/docker-nginx/default.conf:/etc/nginx/conf.d/default.conf -d nginx
+```
+
+This command links the custom website pages to the container.
+
+```bash
+docker restart docker-nginx
+```
+
+ you need to restart your container to reflect changes on the associated pages.
+
 
 # Kubernestes :-
 Kubernetes (sometimes shortened to K8s with the 8 standing for the number of letters between the “K” and the “s”) is an open source system to deploy, scale, and manage containerized applications anywhere.
