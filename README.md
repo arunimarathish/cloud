@@ -1,10 +1,10 @@
 
-# Cloud-computing
+
 Concepts of cloud computing, basics, related topics details 
 
 
 
-# Cloud Computing:- 
+# Cloud Computing 
 
 Cloud computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ("the cloud"). This allows for faster innovation, flexible resources, and economies of scale.
 
